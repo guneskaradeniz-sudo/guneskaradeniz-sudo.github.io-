@@ -14,5 +14,6 @@ Here you'll find my coding projects and classwork.
 ### Big Ideas
 This section explores the big ideas behind computer science and technology.</p>
 
+
 ### Documentation
 Notes, reflections, and assignments are documented here.
