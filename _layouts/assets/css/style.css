@@ -1,0 +1,17 @@
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #0074D9;
+}
