@@ -1,17 +1,338 @@
-
-    <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Can Ortanç — Portfolio</title>
+  <meta name="description" content="Güneş Karadeniz | 10th frader — coding and web designing." />
+  <style>
+    :root{ --bg:#ffffff; --text:#111; --link:#0b5ed7; --muted:#666; --border:#ddd; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    header,main,footer{max-width:900px;margin:0 auto;padding:12px 16px}
+    header{border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
+    nav a{margin-right:12px;text-decoration:none;color:var(--link);font-weight:bold}
+    nav a[aria-current="page"]{text-decoration:underline}
+    h1{font-size:24px;margin:0}
+    h2{font-size:20px;margin:0 0 8px}
+    .page{display:none;padding:16px 0;border-bottom:1px solid var(--border)}
+    .page:last-of-type{border-bottom:0}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .card{border:1px solid var(--border);border-radius:8px;padding:12px}
+    .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .links a{border:1px solid var(--border);padding:6px 10px;text-decoration:none;color:var(--link);border-radius:4px;font-size:14px}
+    .video-container{max-width:700px;width:100%;margin:10px 0 20px}
+    .video-container video{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:6px}
+    .video-container iframe{width:100%;height:394px;display:block;border:1px solid var(--border);border-radius:6px}
+    pre{overflow:auto;background:#f7f7f7;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:13px}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    details summary{cursor:pointer;color:var(--link);font-weight:bold;margin:8px 0}
+    img{max-width:100%;border:1px solid var(--border);border-radius:6px;margin-top:10px}
+    footer{border-top:1px solid var(--border);margin-top:24px;padding-top:16px;font-size:14px}
+    hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+  </style>
 </head>
 <body>
-  <div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
-  </div>
-  
+  <header>
+    <div><strong>Güneş Karadeniz</strong></div>
+    <nav aria-label="Primary">
+      <a href="#home" id="nav-home">Home</a>
+      <a href="#projects" id="nav-projects">Projects</a>
+      <a href="#big-ideas" id="nav-big-ideas">Big Ideas</a>
+      <a href="#documentation" id="nav-documentation">Documentation</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page" data-title="Home — Güneş Karadeniz">
+      <h2>Home</h2>
+      <p class="muted">10. sınıf öğrencisi · </p>
+      <p>Hi! I’m Güneş. I'm a 10th grader in Hisar School. I like making cool code projects.   </p>
+    </section>
+
+    <section id="projects" class="page" data-title="Projects — Can Ortanç">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Scratch Tic-Tac-Toe</h3>
+          <p>The tic-tac-toe game that I built in Scratch.</p>
+          <div class="links">
+            <a href=https://scratch.mit.edu/projects/1212313348/ target="_blank" rel="noopener">Play on Scratch</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>SwiftUI Tic-Tac-Toe</h3>
+          <p>The Tic-Tac-Toe game i did with Swift code.</p>
+          <div class="video-container">
+            <video controls preload="metadata" playsinline>
+              <source src="assets/swift-tictactoe.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="links"></div>
+          <details>
+            <summary>Show Swift code</summary>
+            <pre><code class="language-swift">import SwiftUI
+
+struct ContentView: View {
+    @State var player = "X"
+    @State var message1 = ""
+    @State var message2 = ""
+    @State var message3 = ""
+    @State var message4 = ""
+    @State var message5 = ""
+    @State var message6 = ""
+    @State var message7 = ""
+    @State var message8 = ""
+    @State var message9 = ""
+    @State var gameOver = false
+    @State var statusText = ""
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text(statusText.isEmpty ? "Sıra: \(player)" : statusText)
+                .font(.title3)
+                .padding(.top, 8)
+
+            HStack(spacing: 20) {
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message1.isEmpty {
+                                message1 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message1).font(.title2).foregroundColor(.white)
+                }
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message2.isEmpty {
+                                message2 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message2).font(.title2).foregroundColor(.white)
+                }
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message3.isEmpty {
+                                message3 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message3).font(.title2).foregroundColor(.white)
+                }
+            }
+
+            HStack(spacing: 20) {
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message4.isEmpty {
+                                message4 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message4).font(.title2).foregroundColor(.white)
+                }
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message5.isEmpty {
+                                message5 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message5).font(.title2).foregroundColor(.white)
+                }
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message6.isEmpty {
+                                message6 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message6).font(.title2).foregroundColor(.white)
+                }
+            }
+
+            HStack(spacing: 20) {
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message7.isEmpty {
+                                message7 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message7).font(.title2).foregroundColor(.white)
+                }
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message8.isEmpty {
+                                message8 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message8).font(.title2).foregroundColor(.white)
+                }
+                ZStack {
+                    Rectangle().fill(Color.blue).frame(width: 120, height: 120)
+                        .onTapGesture {
+                            if !gameOver, message9.isEmpty {
+                                message9 = player
+                                checkWinner()
+                                if !gameOver { player = (player == "X") ? "O" : "X" }
+                            }
+                        }
+                    Text(message9).font(.title2).foregroundColor(.white)
+                }
+            }
+
+            Button("Restart") { resetBoard() }.padding(.top, 8)
+        }
+    }
+
+    func checkWinner() {
+        if message1 != "" && message1 == message2 && message2 == message3 { statusText = "\(message1) kazandı!"; gameOver = true }
+        else if message4 != "" && message4 == message5 && message5 == message6 { statusText = "\(message4) kazandı!"; gameOver = true }
+        else if message7 != "" && message7 == message8 && message8 == message9 { statusText = "\(message7) kazandı!"; gameOver = true }
+        else if message1 != "" && message1 == message4 && message4 == message7 { statusText = "\(message1) kazandı!"; gameOver = true }
+        else if message2 != "" && message2 == message5 && message5 == message8 { statusText = "\(message2) kazandı!"; gameOver = true }
+        else if message3 != "" && message3 == message6 && message6 == message9 { statusText = "\(message3) kazandı!"; gameOver = true }
+        else if message1 != "" && message1 == message5 && message5 == message9 { statusText = "\(message1) kazandı!"; gameOver = true }
+        else if message3 != "" && message3 == message5 && message5 == message7 { statusText = "\(message3) kazandı!"; gameOver = true }
+        else if [message1,message2,message3,message4,message5,message6,message7,message8,message9].allSatisfy({ !$0.isEmpty }) { statusText = "Berabere!"; gameOver = true }
+    }
+
+    func resetBoard() {
+        message1 = ""; message2 = ""; message3 = ""
+        message4 = ""; message5 = ""; message6 = ""
+        message7 = ""; message8 = ""; message9 = ""
+        player = "X"; statusText = ""; gameOver = false
+    }
+}</code></pre>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section id="big-ideas" class="page" data-title="Big Ideas — Güneş Karadeniz">
+      <h2>Big Idea 1 — Creative Development</h2>
+
+      <article class="card">
+        <p>
+        Big Idea 1 – Creative Development 
+1.1 Collaboration
+Teamwork makes programming easier. Sharing ideas helps solve problems faster than working alone.
+1.2 Program Design and Development
+Good programs start with a plan. Algorithms and pseudocode make coding clearer, and debugging is just part of the process.
+1.3 Program Function and Purpose
+Programs exist to serve people. Input and output connect us to the computer, and functions keep code organized. Documentation feels boring but saves time later.
+1.4 Identifying and Correcting Errors
+Testing shows what’s broken, and error handling stops programs from failing. Mistakes aren’t bad—they teach us how to improve.
+        </p>
+
+        <ul>
+        
+        </ul>
+
+        <p class="muted"><strong>3-minute narration:</strong> see the embedded video in this section.</p>
+
+        <div class="video-container" id="bigidea1-video">
+          <iframe 
+            src="https://drive.google.com/file/d/1CdquBA5xvJcc1qQYtaMOuNaHN2y_ESfz/view"
+            title="Big Idea 1 — Creative Development"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1CdquBA5xvJcc1qQYtaMOuNaHN2y_ESfz/view" target="_blank" rel="noopener">Open in new tab</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="documentation" class="page" data-title="Docs — Can Ortanç">
+      <h2>Documentation</h2>
+
+      <!-- NEW card with your text -->
+      <article class="card">
+        <h3>How I Made This Website</h3>
+        <p>At first when I started making this site it was very confusing for me but after a while I started getting the hang of it. I watched Beyza Hoca's videos, found some codes on the internet and looked at the documentaion's of my friends..</p>
+      </article>
+
+      <article class="card">
+        <h3></h3>
+        <p>Purpose: </p>
+        <p>Inputs/Outputs: .</p>
+        <p></p>
+        <p></p>
+        <p> </p>
+      </article>
+
+      <hr>
+
+      <article class="card">
+        <h3>Scratch Tic-Tac-Toe — Documentation</h3>
+        <p lang="en">
+        
+        </p>
+        <p><a href=_blank" rel="noopener">Watch the video</a></p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links" aria-label="Profile Links">
+      <a href="https://github.com/guneskaradeniz-sudo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://scratch.mit.edu/users/merhabamarhabaa/" target="_blank" rel="noopener">Scratch</a>
+    </div>
+  </footer>
+
+  <script>
+    const pages = Array.from(document.querySelectorAll('.page'));
+    const navLinks = {
+      home: document.getElementById('nav-home'),
+      projects: document.getElementById('nav-projects'),
+      'big-ideas': document.getElementById('nav-big-ideas'),
+      documentation: document.getElementById('nav-documentation')
+    };
+
+    function showPage(name){
+      pages.forEach(sec => sec.style.display = 'none');
+      Object.values(navLinks).forEach(a => a && a.removeAttribute('aria-current'));
+      const id = name || 'home';
+      const active = document.getElementById(id);
+      if(active){
+        active.style.display = 'block';
+        if(navLinks[id]) navLinks[id].setAttribute('aria-current','page');
+        document.title = active.getAttribute('data-title') || 'Can Ortanç — Portfolio';
+      }else{
+        location.hash = '#home';
+      }
+    }
+    function onRouteChange(){
+      const hash = location.hash.replace('#','');
+      showPage(hash || 'home');
+    }
+    window.addEventListener('hashchange', onRouteChange);
+    window.addEventListener('DOMContentLoaded', onRouteChange);
+  </script>
 </body>
 </html>
